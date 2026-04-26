@@ -1,0 +1,32 @@
+name: Validate docs
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate docs.json
+        run: python3 -m json.tool docs.json > /tmp/docs.json
+
+      - name: Check required pages
+        run: |
+          set -e
+          for page in \
+            docs/overview.mdx \
+            docs/quickstart.mdx \
+            docs/onboarding.mdx \
+            docs/mcp.mdx \
+            docs/cli.mdx \
+            docs/endpoint-reference.mdx \
+            docs/architecture.mdx \
+            docs/cicd.mdx
+          do
+            test -s "$page"
+          done
