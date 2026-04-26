@@ -3,9 +3,9 @@ title: "CI/CD"
 description: "How Vima keeps docs, MCP, and production health from drifting."
 ---
 
-## workflows
+## Workflows
 
-| workflow | purpose |
+| Workflow | Purpose |
 | --- | --- |
 | `backend-tests.yml` | backend pytest |
 | `mcp-tests.yml` | MCP package tests plus Compose/Caddy validation |
@@ -14,7 +14,7 @@ description: "How Vima keeps docs, MCP, and production health from drifting."
 | `deploy.yml` | rsync + Docker Compose deploy to Vultr |
 | `health-canary.yml` | public production probes every 30 minutes |
 
-## docs drift
+## Docs Drift
 
 `scripts/check_docs_drift.py` watches:
 
@@ -46,7 +46,7 @@ the Agent Docs Audit prompt, and the favicon into that repo and pushes a
 The workflow needs `VIMA_DOCS_SYNC_TOKEN`, a GitHub token with write access to
 `stephenhungg/vima-docs`.
 
-## canary
+## Canary
 
 The public canary probes:
 

@@ -28,7 +28,7 @@
   "navigation": {
     "groups": [
       {
-        "group": "start",
+        "group": "Start",
         "pages": [
           "docs/overview",
           "docs/quickstart",
@@ -36,7 +36,7 @@
         ]
       },
       {
-        "group": "agent interfaces",
+        "group": "Agent Interfaces",
         "pages": [
           "docs/mcp",
           "docs/cli",
@@ -44,7 +44,7 @@
         ]
       },
       {
-        "group": "operations",
+        "group": "Operations",
         "pages": [
           "docs/architecture",
           "docs/cicd"
@@ -55,11 +55,11 @@
   "navbar": {
     "links": [
       {
-        "label": "live site",
+        "label": "Live Site",
         "href": "https://vimaspatial.tech"
       },
       {
-        "label": "github",
+        "label": "GitHub",
         "href": "https://github.com/stephenhungg/vima-docs"
       }
     ]

@@ -1,18 +1,18 @@
 ---
-title: "architecture"
+title: "Architecture"
 description: "How Vima stays small enough for the production VPS."
 ---
 
 Production is a single Vultr VPS:
 
-| service | internal port | role |
+| Service | Internal Port | Role |
 | --- | --- | --- |
 | Caddy | `80`, `443` | TLS and reverse proxy |
-| frontend | `3000` | landing page and dashboard |
-| backend | `8765` | FastAPI evidence API |
+| Frontend | `3000` | landing page and dashboard |
+| Backend | `8765` | FastAPI evidence API |
 | MCP | `8766` | remote agent tool endpoint |
 
-## routing
+## Routing
 
 ```text
 https://vimaspatial.tech/       -> frontend:3000
@@ -20,7 +20,7 @@ https://vimaspatial.tech/api/*  -> backend:8765
 https://vimaspatial.tech/mcp*   -> mcp:8766
 ```
 
-## no-GPU constraint
+## No-GPU Constraint
 
 The production box is 1 vCPU / 2 GB RAM. Anything that runs there must be tiny.
 
@@ -38,7 +38,7 @@ Depth Anything + SAM + reconstruction artifacts
   runtime dependencies to production containers.
 </Warning>
 
-## deploy
+## Deploy
 
 Pushes to `main` run `.github/workflows/deploy.yml`, rsync to the VPS, rebuild
 Docker Compose, and verify backend, MCP, and public Caddy health.

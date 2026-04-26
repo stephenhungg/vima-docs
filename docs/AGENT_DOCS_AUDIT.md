@@ -5,7 +5,7 @@ changes. Keep the first run report-only unless a human explicitly asks for
 commits.
 
 ```text
-you are auditing vima docs for drift.
+You are auditing vima docs for drift.
 
 repo context:
 - backend api: backend/api.py
