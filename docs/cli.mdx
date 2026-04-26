@@ -1,0 +1,43 @@
+---
+title: "cli"
+description: "portable shell interface for the vima api"
+---
+
+the cli package lives in `packages/vima-agent`.
+
+## install from github
+
+```bash
+uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima doctor
+```
+
+## commands
+
+```bash
+vima doctor --json
+vima analyze --sample masonry-p --json
+vima compare --sample masonry-p --json
+vima cii summary --json
+vima cii frames --filter P --json
+vima zones --json
+vima eval --json
+vima skill print --agent codex
+vima skill install --agent auto
+```
+
+## api url override
+
+production is the default:
+
+```text
+https://vimaspatial.tech/api
+```
+
+local backend development:
+
+```bash
+VIMA_API_URL=http://localhost:8765 vima doctor
+```
+
+the cli intentionally stays thin. it is a portable client for hosted evidence,
+not a wrapper around the local perception pipeline.

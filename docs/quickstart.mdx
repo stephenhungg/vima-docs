@@ -1,0 +1,43 @@
+---
+title: "quickstart"
+description: "the fastest way to verify vima from a fresh machine"
+---
+
+## 1. check production
+
+```bash
+curl -sf https://vimaspatial.tech/api/health
+curl -sf https://vimaspatial.tech/api/cii/summary
+curl -sf https://vimaspatial.tech/mcp/health
+```
+
+## 2. use the cli
+
+until the package is published to pypi, install from the github subdirectory:
+
+```bash
+uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima doctor
+```
+
+analyze a bundled sample frame:
+
+```bash
+uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima analyze --sample masonry-p --json
+```
+
+print the agent skill:
+
+```bash
+uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima skill print --agent codex
+```
+
+## 3. connect mcp
+
+point an mcp-capable client at:
+
+```text
+https://vimaspatial.tech/mcp
+```
+
+the hosted mcp server exposes cached evidence tools first, plus live frame
+analysis when an agent needs to inspect a supplied image.

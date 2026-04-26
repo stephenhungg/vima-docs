@@ -1,0 +1,38 @@
+---
+title: "onboarding"
+description: "how fast a new human or agent can get useful vima context"
+---
+
+onboarding is easy now. the repo has three clean entry points:
+
+1. dashboard for humans
+2. cli for shell agents
+3. mcp for tool-using agents
+
+## human path
+
+open `https://vimaspatial.tech`, then jump to the dashboard. the landing page
+shows the proof chain, the live cii numbers, and the agent handoff commands.
+
+## agent path
+
+preferred:
+
+```text
+https://vimaspatial.tech/mcp
+```
+
+fallback:
+
+```bash
+uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima doctor
+```
+
+## what is still slightly rough
+
+- the cli is not published to pypi yet, so `uvx vima-agent@latest` is still aspirational.
+- the mcp route needs the current deploy to land before public `/mcp/health` returns 200.
+- generated demo artifacts are still hackathon artifacts, not benchmark-grade eval data.
+
+none of that blocks onboarding. a new agent can verify prod, inspect cii rows,
+query spatial zones, and analyze a sample frame without cloning the full backend.

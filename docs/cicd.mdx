@@ -1,0 +1,49 @@
+---
+title: "ci/cd"
+description: "how vima keeps docs, mcp, and production health from drifting"
+---
+
+## workflows
+
+| workflow | purpose |
+| --- | --- |
+| `backend-tests.yml` | backend pytest |
+| `mcp-tests.yml` | mcp package tests plus compose/caddy validation |
+| `docs-drift.yml` | fails when api/mcp/cli changes without docs updates |
+| `deploy.yml` | rsync + docker compose deploy to vultr |
+| `health-canary.yml` | public prod probes every 30 minutes |
+
+## docs drift
+
+`scripts/check_docs_drift.py` watches:
+
+- `backend/api.py`
+- `packages/vima-agent/**`
+- `packages/vima-mcp/**`
+- `infra/Caddyfile`
+- `infra/docker-compose.yml`
+- `infra/Dockerfile.mcp`
+
+if any of those change, the same diff must also touch one of:
+
+- `docs/**`
+- `docs.json`
+- `README.md`
+- `infra/README.md`
+- `frontend/app/page.tsx`
+
+this is deliberately boring. agent-written auto-commits can come later; for the
+demo window, deterministic drift detection is safer.
+
+## canary
+
+the public canary probes:
+
+```text
+/
+/api/health
+/api/cii/summary
+/mcp/health
+```
+
+that catches caddy, tls, backend, and mcp regressions from outside the box.

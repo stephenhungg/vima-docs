@@ -1,0 +1,80 @@
+---
+title: "endpoint reference"
+description: "hosted vima http endpoints used by the dashboard, cli, and mcp server"
+---
+
+base url:
+
+```text
+https://vimaspatial.tech/api
+```
+
+## health
+
+```http
+GET /health
+```
+
+returns service status and the public endpoint list.
+
+## analyze frame
+
+```http
+POST /analyze/frame?prompt=vima&timestamp=15.0&event_id=vima-agent
+Content-Type: multipart/form-data
+```
+
+form fields:
+
+| field | type | required |
+| --- | --- | --- |
+| `file` | image file | yes |
+
+query params:
+
+| param | values | default |
+| --- | --- | --- |
+| `prompt` | `vima`, `baseline` | `vima` |
+| `timestamp` | float seconds | `15.0` |
+| `event_id` | string | `NC event candidate` |
+
+## cii summary
+
+```http
+GET /cii/summary
+```
+
+returns productive, contributory, non-contributory counts and wrench-time pct.
+
+## cii frames
+
+```http
+GET /cii/frames
+```
+
+returns the cached per-frame cii classifications.
+
+## spatial zones
+
+```http
+GET /spatial/zones
+```
+
+returns zone-level productivity metrics and a short spatial narrative.
+
+## eval
+
+```http
+GET /eval
+```
+
+returns temporal eval claims, proof-frame citations, and baseline comparison.
+
+## temporal run
+
+```http
+POST /temporal/run?n=8
+```
+
+runs live temporal reasoning with cooldown protection. the frontend falls back
+to cached reference results if live inference is paused or unavailable.

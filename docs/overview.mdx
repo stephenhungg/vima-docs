@@ -1,0 +1,45 @@
+---
+title: "overview"
+description: "what vima is and why agents should use it"
+---
+
+vima turns egocentric construction footage into auditable spatial evidence.
+
+the demo path is intentionally simple:
+
+```text
+hardhat frames
+  -> precomputed spatial inference
+  -> cii work labels
+  -> colmap zone attribution
+  -> cited answer / dashboard / agent tool response
+```
+
+the important bit: vima is not asking a model to vibe-check a jobsite from raw
+video. it builds a small evidence layer first, then exposes that evidence to
+humans and agents through the dashboard, http api, cli, and mcp server.
+
+## production endpoints
+
+| surface | url |
+| --- | --- |
+| landing | `https://vimaspatial.tech` |
+| api | `https://vimaspatial.tech/api` |
+| mcp | `https://vimaspatial.tech/mcp` |
+| mcp health | `https://vimaspatial.tech/mcp/health` |
+
+## when to use what
+
+| use case | interface |
+| --- | --- |
+| agent in claude code, cursor, windsurf, or another mcp client | mcp |
+| shell automation or local agent without mcp | cli |
+| custom frontend or script | http api |
+| judge/demo exploration | dashboard |
+
+## current hosted facts
+
+- 30 sampled masonry frames
+- 86.7% wrench time
+- cii frame rows and spatial zones are served from cached production evidence
+- expensive inference is precomputed offline, not run on the 2 gb vps

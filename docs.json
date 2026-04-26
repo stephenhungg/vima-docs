@@ -1,0 +1,50 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "vima",
+  "theme": "mint",
+  "colors": {
+    "primary": "#f2a7b8",
+    "light": "#f7ecef",
+    "dark": "#080503"
+  },
+  "favicon": "/favicon.ico",
+  "navigation": {
+    "groups": [
+      {
+        "group": "start",
+        "pages": [
+          "docs/overview",
+          "docs/quickstart",
+          "docs/onboarding"
+        ]
+      },
+      {
+        "group": "agent interfaces",
+        "pages": [
+          "docs/mcp",
+          "docs/cli",
+          "docs/endpoint-reference"
+        ]
+      },
+      {
+        "group": "operations",
+        "pages": [
+          "docs/architecture",
+          "docs/cicd"
+        ]
+      }
+    ]
+  },
+  "navbar": {
+    "links": [
+      {
+        "label": "site",
+        "href": "https://vimaspatial.tech"
+      },
+      {
+        "label": "github",
+        "href": "https://github.com/philip-chen6/vima"
+      }
+    ]
+  }
+}

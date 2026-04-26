@@ -1,0 +1,42 @@
+---
+title: "architecture"
+description: "how vima stays small enough for the production vps"
+---
+
+production is a single vultr vps:
+
+| service | internal port | role |
+| --- | --- | --- |
+| caddy | `80`, `443` | tls and reverse proxy |
+| frontend | `3000` | landing and dashboard |
+| backend | `8765` | fastapi evidence api |
+| mcp | `8766` | remote agent tool endpoint |
+
+## routing
+
+```text
+https://vimaspatial.tech/       -> frontend:3000
+https://vimaspatial.tech/api/*  -> backend:8765
+https://vimaspatial.tech/mcp*   -> mcp:8766
+```
+
+## no-gpu constraint
+
+the production box is 1 vcpu / 2 gb ram. anything that runs there must be tiny.
+
+that is why expensive perception is precomputed offline:
+
+```text
+depth-anything + sam + reconstruction artifacts
+  -> static inference outputs
+  -> backend evidence context
+  -> dashboard/api/mcp responses
+```
+
+do not add torch, transformers, open3d, sam, depth-anything, or local colmap
+runtime dependencies to production containers.
+
+## deploy
+
+pushes to `main` run `.github/workflows/deploy.yml`, rsync to the vps, rebuild
+docker compose, and verify backend, mcp, and public caddy health.
