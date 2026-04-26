@@ -1,43 +1,56 @@
 ---
-title: "quickstart"
-description: "the fastest way to verify vima from a fresh machine"
+title: "Quickstart"
+description: "Verify VIMA from a fresh machine in a few commands."
 ---
 
-## 1. check production
+<Steps>
+  <Step title="Check production health">
+    ```bash
+    curl -sf https://vimaspatial.tech/api/health
+    curl -sf https://vimaspatial.tech/api/cii/summary
+    curl -sf https://vimaspatial.tech/mcp/health
+    ```
+  </Step>
 
-```bash
-curl -sf https://vimaspatial.tech/api/health
-curl -sf https://vimaspatial.tech/api/cii/summary
-curl -sf https://vimaspatial.tech/mcp/health
-```
+  <Step title="Run the CLI from GitHub">
+    Until the package is published to PyPI, install from the repository
+    subdirectory:
 
-## 2. use the cli
+    ```bash
+    uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima doctor
+    ```
+  </Step>
 
-until the package is published to pypi, install from the github subdirectory:
+  <Step title="Analyze a sample frame">
+    ```bash
+    uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima analyze --sample masonry-p --json
+    ```
+  </Step>
 
-```bash
-uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima doctor
-```
+  <Step title="Connect an MCP client">
+    Point Claude Code, Cursor, Windsurf, or another MCP-capable client at:
 
-analyze a bundled sample frame:
+    ```text
+    https://vimaspatial.tech/mcp
+    ```
+  </Step>
+</Steps>
 
-```bash
-uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima analyze --sample masonry-p --json
-```
+## Recommended First Tool Calls
 
-print the agent skill:
-
-```bash
-uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima skill print --agent codex
-```
-
-## 3. connect mcp
-
-point an mcp-capable client at:
-
-```text
-https://vimaspatial.tech/mcp
-```
-
-the hosted mcp server exposes cached evidence tools first, plus live frame
-analysis when an agent needs to inspect a supplied image.
+<CardGroup cols={2}>
+  <Card title="MCP: doctor" icon="stethoscope">
+    Call `vima_doctor` to verify the API, CII summary, and spatial zone
+    endpoints.
+  </Card>
+  <Card title="MCP: CII summary" icon="bar-chart-3">
+    Call `vima_cii_summary` for the hosted wrench-time metrics.
+  </Card>
+  <Card title="CLI: skill print" icon="file-text">
+    Run `vima skill print --agent codex` to hand off VIMA context to another
+    coding agent.
+  </Card>
+  <Card title="API: frame rows" icon="table">
+    Fetch `/api/cii/frames` when you need raw per-frame evidence.
+  </Card>
+</CardGroup>

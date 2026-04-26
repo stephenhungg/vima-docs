@@ -1,25 +1,25 @@
-# vima docs
+# VIMA Docs
 
-standalone mintlify docs for vima.
+Standalone Mintlify docs for VIMA.
 
-## local preview
+## Local Preview
 
 ```bash
 npx mintlify dev
 ```
 
-## source of truth
+## Source Of Truth
 
-these docs are synced from `philip-chen6/vima`:
+These docs are synced from `philip-chen6/vima`:
 
 - `docs.json`
 - `docs/*.mdx`
 - `docs/AGENT_DOCS_AUDIT.md`
 
-when the main repo changes api, cli, mcp, or routing behavior, run:
+When the main repo changes API, CLI, MCP, or routing behavior, run:
 
 ```bash
 ./scripts/sync-from-vima.sh /Users/stephenhung/Documents/GitHub/vima
 ```
 
-then commit and push.
+Then commit and push.

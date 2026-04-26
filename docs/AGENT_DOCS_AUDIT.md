@@ -1,7 +1,7 @@
-# agent docs audit prompt
+# Agent Docs Audit Prompt
 
-use this prompt when asking an agent to update docs after api, cli, mcp, or infra
-changes. keep the first run report-only unless a human explicitly asks for
+Use this prompt when asking an agent to update docs after API, CLI, MCP, or infra
+changes. Keep the first run report-only unless a human explicitly asks for
 commits.
 
 ```text

@@ -1,18 +1,18 @@
 ---
-title: "architecture"
-description: "how vima stays small enough for the production vps"
+title: "Architecture"
+description: "How VIMA stays small enough for the production VPS."
 ---
 
-production is a single vultr vps:
+Production is a single Vultr VPS:
 
-| service | internal port | role |
+| Service | Internal port | Role |
 | --- | --- | --- |
-| caddy | `80`, `443` | tls and reverse proxy |
-| frontend | `3000` | landing and dashboard |
-| backend | `8765` | fastapi evidence api |
-| mcp | `8766` | remote agent tool endpoint |
+| Caddy | `80`, `443` | TLS and reverse proxy |
+| Frontend | `3000` | Landing page and dashboard |
+| Backend | `8765` | FastAPI evidence API |
+| MCP | `8766` | Remote agent tool endpoint |
 
-## routing
+## Routing
 
 ```text
 https://vimaspatial.tech/       -> frontend:3000
@@ -20,23 +20,25 @@ https://vimaspatial.tech/api/*  -> backend:8765
 https://vimaspatial.tech/mcp*   -> mcp:8766
 ```
 
-## no-gpu constraint
+## No-GPU Constraint
 
-the production box is 1 vcpu / 2 gb ram. anything that runs there must be tiny.
+The production box is 1 vCPU / 2 GB RAM. Anything that runs there must be tiny.
 
-that is why expensive perception is precomputed offline:
+That is why expensive perception is precomputed offline:
 
 ```text
-depth-anything + sam + reconstruction artifacts
+Depth Anything + SAM + reconstruction artifacts
   -> static inference outputs
   -> backend evidence context
-  -> dashboard/api/mcp responses
+  -> dashboard / API / MCP responses
 ```
 
-do not add torch, transformers, open3d, sam, depth-anything, or local colmap
-runtime dependencies to production containers.
+<Warning>
+  Do not add Torch, Transformers, Open3D, SAM, Depth Anything, or local COLMAP
+  runtime dependencies to production containers.
+</Warning>
 
-## deploy
+## Deploy
 
-pushes to `main` run `.github/workflows/deploy.yml`, rsync to the vps, rebuild
-docker compose, and verify backend, mcp, and public caddy health.
+Pushes to `main` run `.github/workflows/deploy.yml`, rsync to the VPS, rebuild
+Docker Compose, and verify backend, MCP, and public Caddy health.

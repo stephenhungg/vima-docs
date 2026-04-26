@@ -1,19 +1,20 @@
 ---
-title: "ci/cd"
-description: "how vima keeps docs, mcp, and production health from drifting"
+title: "CI/CD"
+description: "How VIMA keeps docs, MCP, and production health from drifting."
 ---
 
-## workflows
+## Workflows
 
-| workflow | purpose |
+| Workflow | Purpose |
 | --- | --- |
-| `backend-tests.yml` | backend pytest |
-| `mcp-tests.yml` | mcp package tests plus compose/caddy validation |
-| `docs-drift.yml` | fails when api/mcp/cli changes without docs updates |
-| `deploy.yml` | rsync + docker compose deploy to vultr |
-| `health-canary.yml` | public prod probes every 30 minutes |
+| `backend-tests.yml` | Backend pytest |
+| `mcp-tests.yml` | MCP package tests plus Compose/Caddy validation |
+| `docs-drift.yml` | Fails when API/MCP/CLI changes without docs updates |
+| `sync-mintlify-docs.yml` | Pushes docs changes to `stephenhungg/vima-docs` on main |
+| `deploy.yml` | Rsync + Docker Compose deploy to Vultr |
+| `health-canary.yml` | Public production probes every 30 minutes |
 
-## docs drift
+## Docs Drift
 
 `scripts/check_docs_drift.py` watches:
 
@@ -24,7 +25,7 @@ description: "how vima keeps docs, mcp, and production health from drifting"
 - `infra/docker-compose.yml`
 - `infra/Dockerfile.mcp`
 
-if any of those change, the same diff must also touch one of:
+If any of those change, the same diff must also touch one of:
 
 - `docs/**`
 - `docs.json`
@@ -32,12 +33,22 @@ if any of those change, the same diff must also touch one of:
 - `infra/README.md`
 - `frontend/app/page.tsx`
 
-this is deliberately boring. agent-written auto-commits can come later; for the
-demo window, deterministic drift detection is safer.
+This is deliberately deterministic. Agent-written auto-commits can come later;
+for the demo window, docs drift detection is safer.
 
-## canary
+## Mintlify Sync
 
-the public canary probes:
+Mintlify deploys from `stephenhungg/vima-docs`. When docs or public interface
+files change on `main`, `sync-mintlify-docs.yml` copies `docs.json`, `docs/*.mdx`,
+the Agent Docs Audit prompt, and the favicon into that repo and pushes a
+`sync vima docs` commit.
+
+The workflow needs `VIMA_DOCS_SYNC_TOKEN`, a GitHub token with write access to
+`stephenhungg/vima-docs`.
+
+## Canary
+
+The public canary probes:
 
 ```text
 /
@@ -46,4 +57,4 @@ the public canary probes:
 /mcp/health
 ```
 
-that catches caddy, tls, backend, and mcp regressions from outside the box.
+That catches Caddy, TLS, backend, and MCP regressions from outside the box.

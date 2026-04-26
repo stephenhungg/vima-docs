@@ -1,42 +1,63 @@
 ---
-title: "mcp"
-description: "hosted model context protocol tools for vima"
+title: "MCP Server"
+description: "Hosted Model Context Protocol tools for VIMA."
 ---
 
-the hosted mcp endpoint is:
+The hosted MCP endpoint is:
 
 ```text
 https://vimaspatial.tech/mcp
 ```
 
-health check:
+Health check:
 
 ```bash
 curl -sf https://vimaspatial.tech/mcp/health
 ```
 
-## tools
+<Note>
+  If the health check returns `404`, Mintlify is fine but the main VIMA
+  deployment has not shipped the MCP container and Caddy route yet.
+</Note>
 
-| tool | purpose |
+## Tools
+
+| Tool | Purpose |
 | --- | --- |
-| `vima_doctor` | checks api health, cii summary, and spatial zones |
-| `vima_analyze_frame` | analyzes a sample, image url, or base64 image |
-| `vima_compare_frame` | compares vima prompting against baseline prompting |
-| `vima_cii_summary` | returns wrench-time summary stats |
-| `vima_cii_frames` | returns frame-level cii rows, optionally filtered by `P`, `C`, or `NC` |
-| `vima_spatial_zones` | returns zone-level spatial productivity evidence |
-| `vima_eval` | returns temporal eval claims and baseline comparison |
+| `vima_doctor` | Checks API health, CII summary, and spatial zones |
+| `vima_analyze_frame` | Analyzes a sample, image URL, or base64 image |
+| `vima_compare_frame` | Compares VIMA prompting against baseline prompting |
+| `vima_cii_summary` | Returns wrench-time summary stats |
+| `vima_cii_frames` | Returns frame-level CII rows, optionally filtered by `P`, `C`, or `NC` |
+| `vima_spatial_zones` | Returns zone-level spatial productivity evidence |
+| `vima_eval` | Returns temporal eval claims and baseline comparison |
 
-## deployment
-
-the server lives in `packages/vima-mcp` and runs as a small compose service on
-the production vps:
+## Deployment Shape
 
 ```text
-caddy -> /mcp* -> mcp:8766
-mcp -> backend:8765
+Caddy -> /mcp* -> mcp:8766
+MCP   -> backend:8765
 ```
 
-the service only forwards to the existing api using stdlib `urllib` plus
-FastMCP. it does not run torch, transformers, open3d, sam, depth-anything, or
-local reconstruction code.
+The server lives in `packages/vima-mcp` and runs as a small Docker Compose
+service next to the frontend and backend.
+
+<CardGroup cols={2}>
+  <Card title="Tiny Runtime" icon="feather">
+    FastMCP plus standard-library HTTP forwarding. No local inference stack.
+  </Card>
+  <Card title="Same Evidence Surface" icon="layers-3">
+    MCP tools wrap the same hosted API used by the CLI and dashboard.
+  </Card>
+</CardGroup>
+
+## What Not To Add
+
+Do not add any of these to the production MCP container:
+
+- `torch`
+- `transformers`
+- `open3d`
+- SAM
+- Depth Anything
+- local COLMAP or reconstruction runtime

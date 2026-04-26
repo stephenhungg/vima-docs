@@ -1,80 +1,81 @@
 ---
-title: "endpoint reference"
-description: "hosted vima http endpoints used by the dashboard, cli, and mcp server"
+title: "Endpoint Reference"
+description: "Hosted VIMA HTTP endpoints used by the dashboard, CLI, and MCP server."
 ---
 
-base url:
+Base URL:
 
 ```text
 https://vimaspatial.tech/api
 ```
 
-## health
+## Health
 
 ```http
 GET /health
 ```
 
-returns service status and the public endpoint list.
+Returns service status and the public endpoint list.
 
-## analyze frame
+## Analyze Frame
 
 ```http
 POST /analyze/frame?prompt=vima&timestamp=15.0&event_id=vima-agent
 Content-Type: multipart/form-data
 ```
 
-form fields:
+Form fields:
 
-| field | type | required |
+| Field | Type | Required |
 | --- | --- | --- |
 | `file` | image file | yes |
 
-query params:
+Query params:
 
-| param | values | default |
+| Param | Values | Default |
 | --- | --- | --- |
 | `prompt` | `vima`, `baseline` | `vima` |
 | `timestamp` | float seconds | `15.0` |
 | `event_id` | string | `NC event candidate` |
 
-## cii summary
+## CII Summary
 
 ```http
 GET /cii/summary
 ```
 
-returns productive, contributory, non-contributory counts and wrench-time pct.
+Returns Productive, Contributory, Non-Contributory counts and wrench-time
+percentage.
 
-## cii frames
+## CII Frames
 
 ```http
 GET /cii/frames
 ```
 
-returns the cached per-frame cii classifications.
+Returns the cached per-frame CII classifications.
 
-## spatial zones
+## Spatial Zones
 
 ```http
 GET /spatial/zones
 ```
 
-returns zone-level productivity metrics and a short spatial narrative.
+Returns zone-level productivity metrics and a short spatial narrative.
 
-## eval
+## Eval
 
 ```http
 GET /eval
 ```
 
-returns temporal eval claims, proof-frame citations, and baseline comparison.
+Returns temporal eval claims, proof-frame citations, and baseline comparison.
 
-## temporal run
+## Temporal Run
 
 ```http
 POST /temporal/run?n=8
 ```
 
-runs live temporal reasoning with cooldown protection. the frontend falls back
+Runs live temporal reasoning with cooldown protection. The frontend falls back
 to cached reference results if live inference is paused or unavailable.

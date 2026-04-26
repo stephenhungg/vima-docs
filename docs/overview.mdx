@@ -1,45 +1,60 @@
 ---
-title: "overview"
-description: "what vima is and why agents should use it"
+title: "Overview"
+description: "Agent-ready spatial intelligence for construction video."
 ---
 
-vima turns egocentric construction footage into auditable spatial evidence.
+VIMA turns egocentric construction footage into auditable spatial evidence.
+Instead of asking a model to guess from raw video, VIMA builds a compact evidence
+layer first, then exposes it to humans and agents through a dashboard, HTTP API,
+CLI, and MCP server.
 
-the demo path is intentionally simple:
+<CardGroup cols={2}>
+  <Card title="Evidence First" icon="scan-search">
+    Frames are grounded with cached CII labels, zone attribution, and spatial
+    context before they become an answer.
+  </Card>
+  <Card title="Agent Native" icon="bot">
+    MCP and CLI interfaces let external agents inspect the same production
+    evidence as the dashboard.
+  </Card>
+  <Card title="Small Production Footprint" icon="server">
+    Expensive perception is precomputed offline, so the hosted services stay
+    light enough for a 1 vCPU / 2 GB VPS.
+  </Card>
+  <Card title="Auditable Outputs" icon="clipboard-check">
+    Tool responses are structured JSON with frame rows, zone metrics, and
+    temporal evidence instead of ungrounded prose.
+  </Card>
+</CardGroup>
+
+## Production Surfaces
+
+| Surface | URL |
+| --- | --- |
+| Landing | `https://vimaspatial.tech` |
+| API | `https://vimaspatial.tech/api` |
+| MCP | `https://vimaspatial.tech/mcp` |
+| MCP health | `https://vimaspatial.tech/mcp/health` |
+
+## Pipeline
 
 ```text
-hardhat frames
+Hardhat frames
   -> precomputed spatial inference
-  -> cii work labels
-  -> colmap zone attribution
-  -> cited answer / dashboard / agent tool response
+  -> CII work labels
+  -> COLMAP zone attribution
+  -> cited dashboard / API / agent response
 ```
 
-the important bit: vima is not asking a model to vibe-check a jobsite from raw
-video. it builds a small evidence layer first, then exposes that evidence to
-humans and agents through the dashboard, http api, cli, and mcp server.
-
-## production endpoints
-
-| surface | url |
-| --- | --- |
-| landing | `https://vimaspatial.tech` |
-| api | `https://vimaspatial.tech/api` |
-| mcp | `https://vimaspatial.tech/mcp` |
-| mcp health | `https://vimaspatial.tech/mcp/health` |
-
-## when to use what
-
-| use case | interface |
-| --- | --- |
-| agent in claude code, cursor, windsurf, or another mcp client | mcp |
-| shell automation or local agent without mcp | cli |
-| custom frontend or script | http api |
-| judge/demo exploration | dashboard |
-
-## current hosted facts
+## Current Hosted Facts
 
 - 30 sampled masonry frames
 - 86.7% wrench time
-- cii frame rows and spatial zones are served from cached production evidence
-- expensive inference is precomputed offline, not run on the 2 gb vps
+- Cached CII frame rows and spatial zones
+- Offline inference artifacts served through a small hosted API
+
+<Note>
+  The hosted MCP route depends on the main VIMA app deployment. If
+  `/mcp/health` returns `404`, the docs are deployed but the main app has not
+  shipped the MCP service yet.
+</Note>

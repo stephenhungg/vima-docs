@@ -1,17 +1,17 @@
 ---
-title: "cli"
-description: "portable shell interface for the vima api"
+title: "CLI"
+description: "Portable shell interface for the VIMA API."
 ---
 
-the cli package lives in `packages/vima-agent`.
+The CLI package lives in `packages/vima-agent`.
 
-## install from github
+## Install From GitHub
 
 ```bash
 uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima doctor
 ```
 
-## commands
+## Commands
 
 ```bash
 vima doctor --json
@@ -25,19 +25,23 @@ vima skill print --agent codex
 vima skill install --agent auto
 ```
 
-## api url override
+## API URL Override
 
-production is the default:
+Production is the default:
 
 ```text
 https://vimaspatial.tech/api
 ```
 
-local backend development:
+Local backend development:
 
 ```bash
 VIMA_API_URL=http://localhost:8765 vima doctor
 ```
 
-the cli intentionally stays thin. it is a portable client for hosted evidence,
+<Tip>
+  Use the CLI when an agent has shell access but no MCP client configured.
+</Tip>
+
+The CLI intentionally stays thin. It is a portable client for hosted evidence,
 not a wrapper around the local perception pipeline.
