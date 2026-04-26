@@ -1,11 +1,11 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "VIMA",
+  "name": "v i m a.",
   "description": "Agent-ready spatial intelligence for construction video.",
-  "theme": "maple",
+  "theme": "mint",
   "colors": {
-    "primary": "#f2a7b8",
-    "light": "#f7ecef",
+    "primary": "#A64D79",
+    "light": "#f2a7b8",
     "dark": "#080503"
   },
   "appearance": {
@@ -28,7 +28,7 @@
   "navigation": {
     "groups": [
       {
-        "group": "Start",
+        "group": "start",
         "pages": [
           "docs/overview",
           "docs/quickstart",
@@ -36,7 +36,7 @@
         ]
       },
       {
-        "group": "Agent Interfaces",
+        "group": "agent interfaces",
         "pages": [
           "docs/mcp",
           "docs/cli",
@@ -44,7 +44,7 @@
         ]
       },
       {
-        "group": "Operations",
+        "group": "operations",
         "pages": [
           "docs/architecture",
           "docs/cicd"
@@ -55,11 +55,11 @@
   "navbar": {
     "links": [
       {
-        "label": "Live Site",
+        "label": "live site",
         "href": "https://vimaspatial.tech"
       },
       {
-        "label": "GitHub",
+        "label": "github",
         "href": "https://github.com/stephenhungg/vima-docs"
       }
     ]

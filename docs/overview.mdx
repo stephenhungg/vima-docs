@@ -1,42 +1,42 @@
 ---
-title: "Overview"
+title: "overview"
 description: "Agent-ready spatial intelligence for construction video."
 ---
 
-VIMA turns egocentric construction footage into auditable spatial evidence.
-Instead of asking a model to guess from raw video, VIMA builds a compact evidence
+Vima turns egocentric construction footage into auditable spatial evidence.
+Instead of asking a model to guess from raw video, Vima builds a compact evidence
 layer first, then exposes it to humans and agents through a dashboard, HTTP API,
 CLI, and MCP server.
 
 <CardGroup cols={2}>
-  <Card title="Evidence First" icon="scan-search">
+  <Card title="evidence first" icon="scan-search">
     Frames are grounded with cached CII labels, zone attribution, and spatial
     context before they become an answer.
   </Card>
-  <Card title="Agent Native" icon="bot">
+  <Card title="agent native" icon="bot">
     MCP and CLI interfaces let external agents inspect the same production
     evidence as the dashboard.
   </Card>
-  <Card title="Small Production Footprint" icon="server">
+  <Card title="small production footprint" icon="server">
     Expensive perception is precomputed offline, so the hosted services stay
     light enough for a 1 vCPU / 2 GB VPS.
   </Card>
-  <Card title="Auditable Outputs" icon="clipboard-check">
+  <Card title="auditable outputs" icon="clipboard-check">
     Tool responses are structured JSON with frame rows, zone metrics, and
     temporal evidence instead of ungrounded prose.
   </Card>
 </CardGroup>
 
-## Production Surfaces
+## production surfaces
 
-| Surface | URL |
+| surface | URL |
 | --- | --- |
-| Landing | `https://vimaspatial.tech` |
+| landing | `https://vimaspatial.tech` |
 | API | `https://vimaspatial.tech/api` |
 | MCP | `https://vimaspatial.tech/mcp` |
 | MCP health | `https://vimaspatial.tech/mcp/health` |
 
-## Pipeline
+## pipeline
 
 ```text
 Hardhat frames
@@ -46,7 +46,7 @@ Hardhat frames
   -> cited dashboard / API / agent response
 ```
 
-## Current Hosted Facts
+## current hosted facts
 
 - 30 sampled masonry frames
 - 86.7% wrench time
@@ -54,7 +54,7 @@ Hardhat frames
 - Offline inference artifacts served through a small hosted API
 
 <Note>
-  The hosted MCP route depends on the main VIMA app deployment. If
+  The hosted MCP route depends on the main Vima app deployment. If
   `/mcp/health` returns `404`, the docs are deployed but the main app has not
   shipped the MCP service yet.
 </Note>

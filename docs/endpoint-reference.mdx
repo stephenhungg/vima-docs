@@ -1,6 +1,6 @@
 ---
-title: "Endpoint Reference"
-description: "Hosted VIMA HTTP endpoints used by the dashboard, CLI, and MCP server."
+title: "endpoint reference"
+description: "Hosted Vima HTTP endpoints used by the dashboard, CLI, and MCP server."
 ---
 
 Base URL:
@@ -9,7 +9,7 @@ Base URL:
 https://vimaspatial.tech/api
 ```
 
-## Health
+## health
 
 ```http
 GET /health
@@ -17,7 +17,7 @@ GET /health
 
 Returns service status and the public endpoint list.
 
-## Analyze Frame
+## analyze frame
 
 ```http
 POST /analyze/frame?prompt=vima&timestamp=15.0&event_id=vima-agent
@@ -26,28 +26,28 @@ Content-Type: multipart/form-data
 
 Form fields:
 
-| Field | Type | Required |
+| field | type | required |
 | --- | --- | --- |
 | `file` | image file | yes |
 
 Query params:
 
-| Param | Values | Default |
+| param | values | default |
 | --- | --- | --- |
 | `prompt` | `vima`, `baseline` | `vima` |
 | `timestamp` | float seconds | `15.0` |
 | `event_id` | string | `NC event candidate` |
 
-## CII Summary
+## CII summary
 
 ```http
 GET /cii/summary
 ```
 
-Returns Productive, Contributory, Non-Contributory counts and wrench-time
+Returns Productive, Contributory, and Non-Contributory counts and wrench-time
 percentage.
 
-## CII Frames
+## CII frames
 
 ```http
 GET /cii/frames
@@ -55,7 +55,7 @@ GET /cii/frames
 
 Returns the cached per-frame CII classifications.
 
-## Spatial Zones
+## spatial zones
 
 ```http
 GET /spatial/zones
@@ -63,7 +63,7 @@ GET /spatial/zones
 
 Returns zone-level productivity metrics and a short spatial narrative.
 
-## Eval
+## eval
 
 ```http
 GET /eval
@@ -71,7 +71,7 @@ GET /eval
 
 Returns temporal eval claims, proof-frame citations, and baseline comparison.
 
-## Temporal Run
+## temporal run
 
 ```http
 POST /temporal/run?n=8

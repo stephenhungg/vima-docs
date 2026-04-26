@@ -1,10 +1,10 @@
 ---
-title: "Quickstart"
-description: "Verify VIMA from a fresh machine in a few commands."
+title: "quickstart"
+description: "Verify Vima from a fresh machine in a few commands."
 ---
 
 <Steps>
-  <Step title="Check production health">
+  <Step title="check production health">
     ```bash
     curl -sf https://vimaspatial.tech/api/health
     curl -sf https://vimaspatial.tech/api/cii/summary
@@ -12,7 +12,7 @@ description: "Verify VIMA from a fresh machine in a few commands."
     ```
   </Step>
 
-  <Step title="Run the CLI from GitHub">
+  <Step title="run the CLI from GitHub">
     Until the package is published to PyPI, install from the repository
     subdirectory:
 
@@ -21,13 +21,13 @@ description: "Verify VIMA from a fresh machine in a few commands."
     ```
   </Step>
 
-  <Step title="Analyze a sample frame">
+  <Step title="analyze a sample frame">
     ```bash
     uvx --from "git+https://github.com/philip-chen6/vima.git#subdirectory=packages/vima-agent" vima analyze --sample masonry-p --json
     ```
   </Step>
 
-  <Step title="Connect an MCP client">
+  <Step title="connect an MCP client">
     Point Claude Code, Cursor, Windsurf, or another MCP-capable client at:
 
     ```text
@@ -36,7 +36,7 @@ description: "Verify VIMA from a fresh machine in a few commands."
   </Step>
 </Steps>
 
-## Recommended First Tool Calls
+## recommended first tool calls
 
 <CardGroup cols={2}>
   <Card title="MCP: doctor" icon="stethoscope">
@@ -47,7 +47,7 @@ description: "Verify VIMA from a fresh machine in a few commands."
     Call `vima_cii_summary` for the hosted wrench-time metrics.
   </Card>
   <Card title="CLI: skill print" icon="file-text">
-    Run `vima skill print --agent codex` to hand off VIMA context to another
+    Run `vima skill print --agent codex` to hand off Vima context to another
     coding agent.
   </Card>
   <Card title="API: frame rows" icon="table">

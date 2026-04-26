@@ -1,20 +1,20 @@
 ---
 title: "CI/CD"
-description: "How VIMA keeps docs, MCP, and production health from drifting."
+description: "How Vima keeps docs, MCP, and production health from drifting."
 ---
 
-## Workflows
+## workflows
 
-| Workflow | Purpose |
+| workflow | purpose |
 | --- | --- |
-| `backend-tests.yml` | Backend pytest |
+| `backend-tests.yml` | backend pytest |
 | `mcp-tests.yml` | MCP package tests plus Compose/Caddy validation |
 | `docs-drift.yml` | Fails when API/MCP/CLI changes without docs updates |
 | `sync-mintlify-docs.yml` | Pushes docs changes to `stephenhungg/vima-docs` on main |
-| `deploy.yml` | Rsync + Docker Compose deploy to Vultr |
-| `health-canary.yml` | Public production probes every 30 minutes |
+| `deploy.yml` | rsync + Docker Compose deploy to Vultr |
+| `health-canary.yml` | public production probes every 30 minutes |
 
-## Docs Drift
+## docs drift
 
 `scripts/check_docs_drift.py` watches:
 
@@ -36,7 +36,7 @@ If any of those change, the same diff must also touch one of:
 This is deliberately deterministic. Agent-written auto-commits can come later;
 for the demo window, docs drift detection is safer.
 
-## Mintlify Sync
+## Mintlify sync
 
 Mintlify deploys from `stephenhungg/vima-docs`. When docs or public interface
 files change on `main`, `sync-mintlify-docs.yml` copies `docs.json`, `docs/*.mdx`,
@@ -46,7 +46,7 @@ the Agent Docs Audit prompt, and the favicon into that repo and pushes a
 The workflow needs `VIMA_DOCS_SYNC_TOKEN`, a GitHub token with write access to
 `stephenhungg/vima-docs`.
 
-## Canary
+## canary
 
 The public canary probes:
 

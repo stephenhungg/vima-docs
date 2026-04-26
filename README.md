@@ -1,14 +1,14 @@
-# VIMA Docs
+# vima docs
 
-Standalone Mintlify docs for VIMA.
+Standalone Mintlify docs for Vima.
 
-## Local Preview
+## local preview
 
 ```bash
 npx mintlify dev
 ```
 
-## Source Of Truth
+## source of truth
 
 These docs are synced from `philip-chen6/vima`:
 
