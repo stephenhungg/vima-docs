@@ -12,6 +12,15 @@ description: "Verify Vima from a fresh machine in a few commands."
     ```
   </Step>
 
+  <Step title="Skim the submission story">
+    For judges, teammates, or agents that need the concise product narrative,
+    start with the Devpost submission page:
+
+    ```text
+    https://docs.vimaspatial.tech/devpost-submission
+    ```
+  </Step>
+
   <Step title="Run the CLI from GitHub">
     Until the package is published to PyPI, install from the repository
     subdirectory:
@@ -33,6 +42,10 @@ description: "Verify Vima from a fresh machine in a few commands."
     ```text
     https://vimaspatial.tech/mcp
     ```
+
+    For curl or browser checks, use `https://vimaspatial.tech/mcp/health`.
+    A plain GET to `/mcp` can return `406` because the route expects an MCP
+    streamable HTTP client.
   </Step>
 </Steps>
 
